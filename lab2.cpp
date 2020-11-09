@@ -18,12 +18,10 @@ public:
     void print()
     {
         cout << "[ ";
-        int i = 0;
-        do {
-            cout << A[i] << ", ";
-            i++;
-        } while (i < dlugosc);
-        cout << A[i] << "]" << endl;
+        for (int i = 0; i < dlugosc; i++) {
+            cout << " " << A[i] << ",";
+        }
+        cout << "]" << endl;
     }
 
     void zmienDlugosc(int x)
@@ -39,29 +37,26 @@ public:
             }
         }
         else {
-            cout << "dupa\n";
-            cout << "\n stworzono temp";
+            temp = new double[x];
+
             for (int i = 0; i < dlugosc; i++) {
                 temp[i] = A[i];
             }
 
             delete[] A;
 
-            cout << "\n usunieto stare A fff";
-            cout << "\n stary A";
+            A = new double[x];
 
-            // A = new double[x];
-
-            cout << "\n nwy A 1";
-            cout << "\n nwy A 2";
             for (int i = 0; i < dlugosc; i++) {
                 A[i] = temp[i];
-                cout << "bla";
             }
-            for (int i = dlugosc; i < x; dlugosc++) {
+
+            for (int i = dlugosc; i < x; i++) {
                 A[i] = 0.;
             }
+
             delete[] temp;
+
             dlugosc   = x;
             pojemnosc = x;
         }
@@ -77,15 +72,15 @@ int main()
 {
     Wektor Jessica{4};
     Jessica.A[2] = 6969;
+    Jessica.A[3] = 9;
     cout << Jessica.A[2] << Jessica.A[3] << endl;
     cout << Jessica.getDlugosc() << endl;
     Jessica.print();
     Jessica.zmienDlugosc(3);
     Jessica.print();
-    Jessica.zmienDlugosc(5);
+    Jessica.zmienDlugosc(6);
 
     for (int i = 0; i < Jessica.getDlugosc(); i++) {
-        cout << "bla";
         Jessica.A[i] = i;
     }
     Jessica.print();
