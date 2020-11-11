@@ -5,6 +5,7 @@ using namespace std;
 
 class ResourceManager
 {
+  public:
   ResourceManager() /* na stercie, wskaźnik do r lista inic */
   {r = new Resource;}
 
@@ -18,7 +19,10 @@ class ResourceManager
   {
     //zwolnij bieżący zasób na ktory wskazuje return - nie usuniemy to wyciek pamięci
     //swtórz nowy obiekt będący kopia *(rm.r) i przypisz jego adres do return
-
+           if (&rm != this) {
+            delete r;
+            r = new Resource{*rm.r}; 
+        }
     return *this;
   }
 
