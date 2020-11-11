@@ -5,13 +5,13 @@ using namespace std;
 
 class ResourceManager
 {
-  ResourceManager(Resource& 1) : r{1} /* na stercie, wskaźnik do r lista inic */
-  {}
+  ResourceManager() /* na stercie, wskaźnik do r lista inic */
+  {r = new Resource;}
 
-  ~ResourceManager() {zniszczyc to na co wskazuje r}
+  ~ResourceManager() {delete r}
 
   ResourceManager(const ResourceManager& rm) /* stwórz nowy obiekt będący kopią *(rm.r) i przepisze jego adres do r    */
-  {}
+  {r = new Resource{*rm.r}}
 
 
   ResourceManager& operator=(const ResourceManager& rm)
@@ -25,10 +25,11 @@ class ResourceManager
   ResourceManager(ResourceManager&& rm)
   {
     //sprawdz czy &rm i this to nie to samo, jeśli tak, nie rób nic
+    r = nullptr;
     r=rm.r;
     rm.r=nullptr;
   }
 
-  int Resource *r;
+  Resource *r;
     double get() {return r->get();}
 };
