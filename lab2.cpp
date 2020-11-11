@@ -4,11 +4,9 @@ using namespace std;
 class Wektor
 {
 public:
-    Wektor(int n)
+    Wektor(int n) : dlugosc{n}, pojemnosc{n}
     {
-        dlugosc   = n;
-        pojemnosc = n;
-        A         = new double[n];
+        A = new double[n];
         for (int i = 0; i < dlugosc; i++) {
             A[i] = 0.;
         }
@@ -61,29 +59,33 @@ public:
             pojemnosc = x;
         }
     }
-    double* A;
+
+    double& operator[](int ind)
+    {
+        if (ind >= dlugosc)
+            zmienDlugosc(ind + 1);
+        return A[ind];
+    }
 
 private:
     int     dlugosc;
     int     pojemnosc;
     double* temp;
+    double* A;
 };
 int main()
 {
     Wektor Jessica{4};
-    Jessica.A[2] = 6969;
-    Jessica.A[3] = 9;
-    cout << Jessica.A[2] << Jessica.A[3] << endl;
-    cout << Jessica.getDlugosc() << endl;
     Jessica.print();
     Jessica.zmienDlugosc(3);
     Jessica.print();
     Jessica.zmienDlugosc(6);
-
-    for (int i = 0; i < Jessica.getDlugosc(); i++) {
-        Jessica.A[i] = i;
-    }
     Jessica.print();
     Jessica.zmienDlugosc(3);
     Jessica.print();
+    Jessica[2] = 42.;
+    double& a  = Jessica[5];
+    a++;
+    Jessica.print();
+    cout << a;
 }

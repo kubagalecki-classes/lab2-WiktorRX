@@ -5,4 +5,5 @@
 class ResourceManager
 {
     // Twoja implementacja tutaj
+    cout<<"dupa";
 };
