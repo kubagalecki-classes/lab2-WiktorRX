@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Resource.hpp"
-using namespace std;
 
 class ResourceManager
 {
@@ -15,7 +14,7 @@ class ResourceManager
   {r = new Resource{*rm.r}}
 
 
-  ResourceManager& operator=(const ResourceManager& rm)
+  ResourceManager operator=(const ResourceManager& rm)
   {
     //zwolnij bieżący zasób na ktory wskazuje return - nie usuniemy to wyciek pamięci
     //swtórz nowy obiekt będący kopia *(rm.r) i przypisz jego adres do return
