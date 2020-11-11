@@ -23,16 +23,7 @@ class ResourceManager
         }
     return *this;
   }
-     ResourceManager& operator=(const ResourceManager&& rm)
-  {
-  
-           if (&rm != this) {
-            delete r;
-            r = rm.r;
-            rm.r = nullptr; 
-        }
-    return *this;
-  }
+
  
 double get() {return r->get();}
   ResourceManager(ResourceManager&& rm)
